@@ -1,0 +1,7 @@
+# se226-labs
+
+#SEMİH YAĞCI
+
+#20200601058
+
+#SECTION 2 
