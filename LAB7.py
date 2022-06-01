@@ -1,26 +1,48 @@
-import cv2 as cv
-import random
+from abc import ABC
 
-path="C:\\Users\\mrbes\\PycharmProjects\\mypythonprojects\\venv\\Scripts\\normalstitch.jpg"
+class Abstract(ABC):
+ def __init__(self,addr):
+    self.address=addr
+ def calculateFreqs(self):
+  pass
 
-normalstitch=cv.imread(path)
-normalstitch=cv.resize(normalstitch,(780,500))
+class ListCount(Abstract):
+ def __init__(self,addr):
+  super().__init__(addr)
 
-##Opencv work with BGR so I split it according to that.
+ def calculateFreqs(self):
+  file=open(self.address,"r")
+  content = []
+  for line in file:
+   for word in line.split():
+    content.append(word)
+  content2=[]
+  content3=[]
+  for word in content:
+   if word in content2:
+    continue
+   else:
+    content3.append(str(word)+" = "+str(content.count(word)))
+    content2.append(word)
+  print(content3)
 
-Blue,Green,Red=cv.split(normalstitch)
+class DictCount(Abstract):
+ def __init__(self,addr):
+  super().__init__(addr)
 
-cv.imshow("Normalstitch",normalstitch)
-cv.imshow("Bluestitch",Blue)
-cv.imshow("Greenstitch",Green)
-cv.imshow("Redstitch",Red)
+ def calculateFreqs(self):
+  file = open(self.address, "r")
+  content={}
+  for line in file:
+   for word in line.split():
+    content[word] = content.get(word,0)+1
+  print(content)
 
-for i in range(500):
-    for j in range(780):
-        Blue[i][j]=random.randint(190,255)
+y=ListCount("strange.txt")
+y.calculateFreqs()
 
-mergedstitch = cv.merge((Blue,Green,Red))
-cv.imshow('Mergedstitch', mergedstitch)
 
-cv.waitKey(0)
-cv.destroyAllWindows()
+x=DictCount("strange.txt")
+x.calculateFreqs()
+
+
