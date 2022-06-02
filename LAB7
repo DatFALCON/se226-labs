@@ -1,0 +1,22 @@
+import cv2
+import cv2 as cv
+import numpy as np
+
+image = cv.imread('normalstitch.jpg', cv.IMREAD_COLOR)
+
+Bluestitch,Greenstitch,Redstitch = cv.split(image)
+
+cv.imshow("Bluestitch",Bluestitch)
+cv.imshow("Greenstitch",Greenstitch)
+cv.imshow("Redstitch",Redstitch)
+cv.imshow("Normalstitch",image)
+
+Bluestitch= Bluestitch+60
+Greenstitch=Greenstitch + 37
+Redstitch=Redstitch + 31
+
+mergedstitch= cv.merge((Bluestitch,Greenstitch,Redstitch))
+cv.imshow("Mergedstitch",mergedstitch)
+
+cv.waitKey(0)
+cv.destroyAllWindows()
