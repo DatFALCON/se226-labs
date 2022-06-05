@@ -12,7 +12,8 @@ import mysql.connector
 
     ##cursor=connection.cursor()
     ##cursor.execute(creatingtable_query)
-
+    
+    
 
 try:
     connection=mysql.connector.connect(host="localhost",database="lab9database",user="root",passwd="")
@@ -24,6 +25,21 @@ try:
         record=(x[0],x[1],x[2],x[3])
         cursor.execute(mysql_insert_query, record)
         connection.commit()
+
+    ##query="SELECT * FROM marveltable"
+    ##query2="DELETE FROM marveltable WHERE Movie='TheIncredibleHulk'"
+    ##query3="SELECT * FROM marveltable WHERE MCU_Phase='Phase2'"
+    ##query4="UPDATE marveltable SET Date='November3,2017' WHERE Date = 'November3,2019'"
+    ##cursor.execute(query4)
+    ##connection.commit() 
+    ##contents = cursor.fetchall()
+    
+    ##print("Printing each row")
+    ##for row in contents:
+        ##print("ID= ", row[0],)
+        ##print("Movie= ", row[1])
+        ##print("Date= ",row[2])
+        ##print("MCU Phase= ", row[3])
 
 
 except mysql.connector.Error as error:
